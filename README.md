@@ -333,6 +333,8 @@ Input (injection detection), output (hallucination/toxicity), tool-use (permissi
 
 ---
 
+## Stanford CME295 
+
 - Lecture 1: https://zurl.co/F0QR5
 - Lecture 2: https://zurl.co/hG5lp
 - Lecture 3: https://zurl.co/PnKrW
