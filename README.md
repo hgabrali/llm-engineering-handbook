@@ -21,43 +21,6 @@
 
 ---
 
-<!-- ===== SECTION 4: GITHUB STATS CARDS (Side-by-Side) ===== -->
-<p align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://github-readme-stats.vercel.app/api?username=hgabrali&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&hide_border=true" alt="GitHub Stats" />
-      </td>
-      <td align="center">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hgabrali&layout=compact&langs_count=8&theme=tokyonight&hide_border=true" alt="Top Languages" />
-      </td>
-    </tr>
-  </table>
-</p>
-
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=hgabrali&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
-</p>
-
----
-
-<!-- ===== ASCII ART HEADER ===== -->
-```
-    __    __    __  ___   ______            _                      _             
-   / /   / /   /  |/  /  / ____/___  ____ _(_)___  ___  ___  _____(_)___  ____ _
-  / /   / /   / /|_/ /  / __/ / __ \/ __ `/ / __ \/ _ \/ _ \/ ___/ / __ \/ __ `/
- / /___/ /___/ /  / /  / /___/ / / / /_/ / / / / /  __/  __/ /  / / / / / /_/ / 
-/_____/_____/_/  /_/  /_____/_/ /_/\__, /_/_/ /_/\___/\___/_/  /_/_/ /_/\__, /  
-                                  /____/                               /____/   
-    __  __                ____                __  
-   / / / /___ _____  ____/ / /_  ____  ____  / /__
-  / /_/ / __ `/ __ \/ __  / __ \/ __ \/ __ \/ //_/
- / __  / /_/ / / / / /_/ / /_/ / /_/ / /_/ / ,<   
-/_/ /_/\__,_/_/ /_/\__,_/_.___/\____/\____/_/|_|  
-```
-
----
-
 <!-- ===== DARK/LIGHT THEME RESPONSIVE IMAGE ===== -->
 <p align="center">
   <picture>
