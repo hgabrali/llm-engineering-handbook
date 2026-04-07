@@ -1,10 +1,77 @@
-# LLM Engineering Handbook
+<!-- ===== SECTION 1: BANNER (Capsule Render) ===== -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,100:4a6cf7&height=220&section=header&text=LLM%20Engineering%20Handbook&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=From%20Transformer%20Internals%20to%20Agentic%20Workflows&descSize=18&descAlignY=55&animation=fadeIn" alt="Banner" width="100%" />
+</p>
 
-> A comprehensive, practitioner-oriented reference on the core building blocks of modern Large Language Models — from low-level transformer mechanics to production-grade agentic systems.
+<!-- ===== SECTION 2: BADGES (Shields.io) ===== -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11" />
+  <img src="https://img.shields.io/github/license/hgabrali/llm-engineering-handbook?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/github/last-commit/hgabrali/llm-engineering-handbook?style=for-the-badge" alt="Last Commit" />
+  <img src="https://img.shields.io/github/stars/hgabrali/llm-engineering-handbook?style=for-the-badge&color=yellow" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/hgabrali/llm-engineering-handbook?style=for-the-badge&color=blue" alt="Forks" />
+  <img src="https://img.shields.io/github/issues/hgabrali/llm-engineering-handbook?style=for-the-badge" alt="Issues" />
+  <img src="https://img.shields.io/badge/LLM-Engineering-blueviolet?style=for-the-badge&logo=openai&logoColor=white" alt="LLM Engineering" />
+</p>
+
+<!-- ===== SECTION 3: CENTERED DESCRIPTION ===== -->
+<p align="center">
+  <em>A comprehensive, practitioner-oriented reference on the core building blocks of modern Large Language Models — from low-level transformer mechanics to production-grade agentic systems.</em>
+</p>
 
 ---
 
-## Table of Contents
+<!-- ===== SECTION 4: GITHUB STATS CARDS (Side-by-Side) ===== -->
+<p align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github-readme-stats.vercel.app/api?username=hgabrali&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&hide_border=true" alt="GitHub Stats" />
+      </td>
+      <td align="center">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hgabrali&layout=compact&langs_count=8&theme=tokyonight&hide_border=true" alt="Top Languages" />
+      </td>
+    </tr>
+  </table>
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=hgabrali&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+</p>
+
+---
+
+<!-- ===== ASCII ART HEADER ===== -->
+```
+    __    __    __  ___   ______            _                      _             
+   / /   / /   /  |/  /  / ____/___  ____ _(_)___  ___  ___  _____(_)___  ____ _
+  / /   / /   / /|_/ /  / __/ / __ \/ __ `/ / __ \/ _ \/ _ \/ ___/ / __ \/ __ `/
+ / /___/ /___/ /  / /  / /___/ / / / /_/ / / / / /  __/  __/ /  / / / / / /_/ / 
+/_____/_____/_/  /_/  /_____/_/ /_/\__, /_/_/ /_/\___/\___/_/  /_/_/ /_/\__, /  
+                                  /____/                               /____/   
+    __  __                ____                __  
+   / / / /___ _____  ____/ / /_  ____  ____  / /__
+  / /_/ / __ `/ __ \/ __  / __ \/ __ \/ __ \/ //_/
+ / __  / /_/ / / / / /_/ / /_/ / /_/ / /_/ / ,<   
+/_/ /_/\__,_/_/ /_/\__,_/_.___/\____/\____/_/|_|  
+```
+
+---
+
+<!-- ===== DARK/LIGHT THEME RESPONSIVE IMAGE ===== -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hgabrali/llm-engineering-handbook/main/Large%20Language%20Models.png" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/hgabrali/llm-engineering-handbook/main/Large%20Language%20Models.png" />
+    <img alt="LLM Architecture Overview" src="https://raw.githubusercontent.com/hgabrali/llm-engineering-handbook/main/Large%20Language%20Models.png" width="700" />
+  </picture>
+</p>
+
+---
+
+<!-- ===== COLLAPSIBLE TABLE OF CONTENTS ===== -->
+<details>
+<summary><strong>📑 Table of Contents (click to expand)</strong></summary>
 
 1. [How Transformers Actually Work](#1-how-transformers-actually-work)
 2. [Decoding Strategies & Mixture-of-Experts](#2-decoding-strategies--mixture-of-experts)
@@ -14,6 +81,9 @@
 6. [Reasoning & Scaling](#6-reasoning--scaling)
 7. [Agentic Workflows](#7-agentic-workflows)
 8. [References & Further Reading](#8-references--further-reading)
+9. [LLM Deep Dive: Expert Technical Reference](#llm-deep-dive-expert-technical-reference)
+
+</details>
 
 ---
 
@@ -31,26 +101,23 @@ Raw text must be converted into discrete integer IDs before a neural network can
 | Byte-Level BPE | Operates directly on raw UTF-8 bytes — no unknown tokens | GPT-2, LLaMA-3 |
 
 **Key concepts:**
-
 - **Vocabulary size trade-off:** A larger vocabulary shortens sequences (faster inference) but inflates the embedding matrix and may underfit rare tokens.
-- **Special tokens:** \`[BOS]\`, \`[EOS]\`, \`[PAD]\`, \`[UNK]\`, \`[MASK]\` — each carries model-specific semantics.
+- **Special tokens:** `[BOS]`, `[EOS]`, `[PAD]`, `[UNK]`, `[MASK]` — each carries model-specific semantics.
 - **Pre-tokenization:** Whitespace splitting, regex patterns applied before BPE.
 
-
-
+```python
 # Example: tiktoken (OpenAI)
 import tiktoken
 enc = tiktoken.encoding_for_model("gpt-4")
 tokens = enc.encode("Transformers are powerful.")
 print(tokens)
-\`\`\`
+```
 
 ### 1.2 Embeddings
 
 Tokens are projected into a continuous vector space through a learned embedding matrix **E ∈ R^{V x d}**, where V is the vocabulary size and d is the model dimension.
 
 **Types of embeddings in a transformer:**
-
 - **Token embeddings:** Lookup table mapping token IDs to dense vectors.
 - **Positional embeddings:** Encode the order of tokens in a sequence. Originally sinusoidal (Vaswani et al., 2017); modern models prefer **Rotary Position Embeddings (RoPE)** or **ALiBi**.
 - **Segment embeddings (encoder models):** Distinguish sentence A from sentence B in tasks like NLI.
@@ -59,13 +126,13 @@ Tokens are projected into a continuous vector space through a learned embedding 
 
 Self-attention is the mechanism that allows every token to attend to every other token in the sequence.
 
-\`\`\`
-Q = X * W_Q    (queries)
-K = X * W_K    (keys)
-V = X * W_V    (values)
+```
+Q = X * W_Q   (queries)
+K = X * W_K   (keys)
+V = X * W_V   (values)
 
 Attention(Q, K, V) = softmax(Q * K^T / sqrt(d_k)) * V
-\`\`\`
+```
 
 **Multi-Head Attention (MHA):** Runs h parallel heads with smaller dimensionality, then concatenates and projects.
 
@@ -127,10 +194,10 @@ All model parameters are updated. Simple but expensive in memory and risks catas
 
 ### 3.2 Parameter-Efficient Finetuning (PEFT) — LoRA
 
-LoRA freezes W and adds a low-rank decomposition: W' = W + (alpha/r) * B @ A
+LoRA freezes W and adds a low-rank decomposition: `W' = W + (alpha/r) * B @ A`
 
 | Variant | Key Difference |
-|---------|----------------|
+|---------|---------------|
 | QLoRA | 4-bit NormalFloat base model, LoRA adapters in fp16 |
 | DoRA | Decomposes weight into magnitude + direction |
 | LoRA+ | Different learning rates for A and B |
@@ -144,6 +211,7 @@ Trains on (instruction, response) pairs. Loss computed only on response tokens.
 ### 3.4 RLHF
 
 **Stage 1 — Reward Model:** Bradley-Terry loss on human preference pairs.
+
 **Stage 2 — PPO:** Maximize reward with KL penalty to stay near SFT distribution.
 
 | Method | Key Idea |
@@ -268,7 +336,9 @@ Best-of-N sampling, iterative refinement, verifier-guided search, MCTS.
 
 ### 7.1 RAG (Retrieval-Augmented Generation)
 
+```
 Query -> Embed -> Retrieve (Vector DB) -> Augment Prompt -> Generate
+```
 
 **Advanced:** Hybrid search (dense + BM25), re-ranking, HyDE, CRAG, Self-RAG.
 
@@ -333,7 +403,7 @@ Input (injection detection), output (hallucination/toxicity), tool-use (permissi
 
 ---
 
-## Stanford CME295 
+## Stanford CME295
 
 - Lecture 1: https://zurl.co/F0QR5
 - Lecture 2: https://zurl.co/hG5lp
@@ -345,20 +415,12 @@ Input (injection detection), output (hallucination/toxicity), tool-use (permissi
 - Lecture 8: https://zurl.co/Un42q
 - Lecture 9: https://zurl.co/rR3YL
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
 ---
 
-**If you find this resource helpful, please consider giving it a ⭐!**
-
-
----
+<!-- ===== SECTION SEPARATOR ===== -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:1a1b27,100:4a6cf7&height=2&section=header" alt="separator" width="100%" />
+</p>
 
 # LLM Deep Dive: Expert Technical Reference
 
@@ -366,13 +428,15 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-## MODULE 1 — How Transformers Actually Work
+<details>
+<summary><strong>MODULE 1 — How Transformers Actually Work (click to expand)</strong></summary>
 
 ### 1.1 Tokenization
 
 Tokenization is not a trivial preprocessing step — it fundamentally shapes what the model can and cannot represent.
 
 #### Byte-Pair Encoding (BPE)
+
 BPE starts with a character-level vocabulary and iteratively merges the most frequent adjacent pair of symbols into a single token. This is a greedy, corpus-frequency-driven compression.
 
 ```
@@ -386,12 +450,13 @@ Iteration 2: (lo, w) → "low"
 The final vocabulary size (e.g., 50,257 for GPT-2; 100,256 for GPT-4o) is a hyperparameter. Larger vocab = fewer tokens per sequence = longer effective context. Smaller vocab = more tokens, better character-level generalization.
 
 #### SentencePiece / Unigram LM
+
 Used by LLaMA, Gemma, T5. Operates directly on raw Unicode (no pre-tokenization whitespace rules). The Unigram variant trains a probabilistic model over subwords and prunes tokens by their marginal log-likelihood contribution — producing a vocabulary that maximizes corpus likelihood under the model.
 
 #### Critical Design Decisions
 
 | Decision | Impact |
-|---|---|
+|----------|--------|
 | Vocabulary size | Embedding matrix size (V × d), coverage of rare words |
 | Pre-tokenization rules | Language-specific whitespace, punctuation handling |
 | Special tokens | `<BOS>`, `<EOS>`, `<PAD>` — Sequence boundary signaling |
@@ -408,9 +473,11 @@ Used by LLaMA, Gemma, T5. Operates directly on raw Unicode (no pre-tokenization 
 After tokenization, each token index t ∈ {0, ..., V-1} is mapped to a dense vector via an embedding lookup matrix E ∈ ℝ^(V×d_model).
 
 #### Token Embeddings
-A learned matrix. Each row is a d-dimensional vector. These are trained end-to-end; geometrically, semantically similar tokens cluster (though this is less interpretable than word2vec because context is handled by attention, not co-occurrence statistics alone).
+
+A learned matrix. Each row is a d-dimensional vector. These are trained end-to-end; geometrically, semantically similar tokens cluster.
 
 #### Positional Encodings
+
 Transformers have no inherent notion of sequence order — attention is permutation-equivariant. Positional encodings inject order information.
 
 **Sinusoidal (Vaswani et al. 2017):**
@@ -420,99 +487,80 @@ PE(pos, 2i)   = sin(pos / 10000^(2i/d_model))
 PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 ```
 
-These are fixed, not learned. The key property: relative position differences are representable as a linear transformation, which is theoretically elegant but practically outperformed by learned alternatives.
+**Learned absolute positional embeddings:** GPT-2, early BERT. Simply a second embedding matrix of size (max_seq_len × d_model).
 
-**Learned absolute positional embeddings:**
-GPT-2, early BERT. Simply a second embedding matrix of size (max_seq_len × d_model). Problem: hard cap on sequence length; cannot generalize beyond training length.
+**RoPE (Rotary Position Embedding):** See Module 5.1. Currently the dominant approach.
 
-**RoPE (Rotary Position Embedding):**
-See Module 5.1. Currently the dominant approach.
-
-**ALiBi:**
-Adds a linear position bias directly to attention logits before softmax: `bias(i,j) = -m · |i - j|` where m is a per-head slope. Extremely simple. Allows length extrapolation beyond training context but degrades smoothly rather than catastrophically.
+**ALiBi:** Adds a linear position bias directly to attention logits before softmax.
 
 ### 1.3 The Attention Mechanism
 
 #### Scaled Dot-Product Attention
 
-Given input matrix X ∈ ℝ^(n×d_model), three projections produce Q, K, V:
-
 ```
-Q = X W_Q,   W_Q ∈ ℝ^(d_model × d_k)
-K = X W_K,   W_K ∈ ℝ^(d_model × d_k)
-V = X W_V,   W_V ∈ ℝ^(d_model × d_v)
-```
+Q = X W_Q,  W_Q ∈ ℝ^(d_model × d_k)
+K = X W_K,  W_K ∈ ℝ^(d_model × d_k)
+V = X W_V,  W_V ∈ ℝ^(d_model × d_v)
 
-Attention output:
-
-```
 Attention(Q, K, V) = softmax( QKᵀ / √d_k ) · V
 ```
 
-The √d_k scaling prevents softmax saturation in high dimensions (without it, dot products grow in magnitude with d_k, pushing softmax into near-one-hot distributions with vanishing gradients).
-
 #### Multi-Head Attention (MHA)
-
-Run h parallel attention heads with separate projections, concatenate, then project:
 
 ```
 head_i = Attention(Q W_Qi, K W_Ki, V W_Vi)
 MHA(X) = Concat(head_1, ..., head_h) W_O
 ```
 
-Each head can attend to different positional or semantic relationships. Empirically, heads specialize: some track syntactic dependencies, others coreference, etc.
-
 #### Complexity Analysis
 
 | Operation | Time | Space |
-|---|---|---|
+|-----------|------|-------|
 | Attention (naive) | O(n² d) | O(n²) |
 | FFN | O(n d²) | O(d²) |
 
-The O(n²) attention cost is the core scalability bottleneck — the subject of most efficient-attention research (FlashAttention, Sparse Attention, Linear Attention).
-
 #### Causal (Autoregressive) Masking
-For decoder-only models (GPT family), position i cannot attend to positions j > i. This is enforced by adding −∞ to the upper triangle of the QKᵀ matrix before softmax, producing zero attention weight after exponentiation.
+
+For decoder-only models (GPT family), position i cannot attend to positions j > i. Enforced by adding −∞ to the upper triangle of the QKᵀ matrix before softmax.
 
 #### KV Cache
-During inference, previously computed K and V matrices are cached and reused. Only the new token's Q is computed per step. This reduces per-step cost from O(n²) to O(n·d) but introduces memory pressure proportional to `batch_size × n_layers × 2 × n_heads × head_dim × seq_len`.
+
+During inference, previously computed K and V matrices are cached and reused.
 
 #### Grouped Query Attention (GQA)
-A memory-efficient variant: instead of one KV pair per head, multiple Q heads share a single KV pair. LLaMA-2 70B uses GQA. Reduces KV cache size by a factor of n_groups while maintaining most of MHA's expressive capacity.
+
+Multiple Q heads share a single KV pair. LLaMA-2 70B uses GQA. Reduces KV cache size by a factor of n_groups.
 
 ### 1.4 The Transformer Block
 
-A full transformer block (decoder-only, pre-norm variant used by modern LLMs):
-
 ```
-x = x + Attention(RMSNorm(x))     # residual + self-attention
-x = x + FFN(RMSNorm(x))           # residual + feed-forward
+x = x + Attention(RMSNorm(x))   # residual + self-attention
+x = x + FFN(RMSNorm(x))         # residual + feed-forward
 ```
 
 #### RMSNorm vs LayerNorm
-`RMSNorm(x) = x / RMS(x) · γ`
-where `RMS(x) = √(mean(x²))`. Faster than LayerNorm (no mean subtraction), numerically stable. Used by LLaMA, Mistral, Gemma.
 
-#### FFN Block
-**Standard:**
-`FFN(x) = max(0, x W_1 + b_1) W_2 + b_2`
+`RMSNorm(x) = x / RMS(x) · γ` where `RMS(x) = √(mean(x²))`. Used by LLaMA, Mistral, Gemma.
 
-**SwiGLU (used by LLaMA, PaLM):**
-`FFN(x) = (SiLU(x W_1) ⊙ x W_2) W_3`
-where `SiLU(x) = x · σ(x)`. This gated architecture provides richer expressivity at similar parameter count and is empirically superior.
+#### FFN Block — SwiGLU
 
-The FFN typically has a 4× expansion: `d_ff = 4 × d_model` (or ~8/3 × d_model for SwiGLU to maintain parameter parity).
+```
+FFN(x) = (SiLU(x W_1) ⊙ x W_2) W_3
+```
+
+where `SiLU(x) = x · σ(x)`. Used by LLaMA, PaLM.
+
+</details>
 
 ---
 
-## MODULE 2 — Decoding Strategies & Mixture of Experts
+<details>
+<summary><strong>MODULE 2 — Decoding Strategies & Mixture of Experts (click to expand)</strong></summary>
 
 ### 2.1 Decoding Strategies
 
-At inference, the model produces a probability distribution over the vocabulary at each step. The decoding strategy determines how to sample from or optimize over this distribution.
-
 #### Greedy Decoding
-Always pick argmax P(token | context). Deterministic, fast, but produces repetitive and often degenerate output. Vulnerable to "probability mass traps."
+Always pick argmax P(token | context). Deterministic, fast, but produces repetitive and often degenerate output.
 
 #### Beam Search
 Maintain k candidate sequences (beams) at each step, expand each by all vocabulary tokens, keep top-k by cumulative log-probability.
@@ -520,11 +568,6 @@ Maintain k candidate sequences (beams) at each step, expand each by all vocabula
 ```
 score(sequence) = Σ log P(tᵢ | t₁...tᵢ₋₁) / length_penalty
 ```
-
-Length penalty (α typically 0.6–1.0) prevents beam search from favoring short sequences. Beam search is the standard for translation/summarization but produces overly conservative/generic text for open-ended generation.
-
-#### Sampling
-Draw from P(·) directly. Introduces stochasticity, diversity, but risks low-probability "hallucination" tokens.
 
 #### Temperature Scaling
 
@@ -537,49 +580,29 @@ P_T(tᵢ) = softmax(logits / T)
 - **T → 0:** degenerates to greedy
 
 #### Top-k Sampling
-Restrict sampling to the k highest-probability tokens. Problem: k is context-insensitive — sometimes the top-k should be 1 (unambiguous next token), sometimes 1000 (creative continuation).
+Restrict sampling to the k highest-probability tokens.
 
 #### Top-p (Nucleus) Sampling
-Sample from the smallest set of tokens whose cumulative probability ≥ p:
-`V_p = min S such that Σ_{t∈S} P(t) ≥ p`
-Then renormalize and sample. Adapts dynamically to the distribution's shape. p=0.9 or 0.95 is typical.
+Sample from the smallest set of tokens whose cumulative probability ≥ p.
 
 #### Min-p Sampling
-Prunes tokens with `P(t) < min_p × max(P(·))`. Relative threshold — preserves the distribution's dynamic range better than top-p in high-entropy situations.
-
-#### Repetition Penalty
-
-```
-logit'(t) = logit(t) / penalty   if t appeared in context
-           = logit(t)             otherwise
-```
-
-Prevents degenerate repetition loops.
+Prunes tokens with `P(t) < min_p × max(P(·))`.
 
 #### Speculative Decoding
-A critical inference acceleration technique:
 
 1. Run a small draft model M_q to generate k tokens speculatively
 2. Run the large target model M_p in a single forward pass to score all k tokens
-3. Accept tokens where M_q's distribution is "close enough" to M_p's; reject and resample otherwise
+3. Accept tokens where M_q's distribution is "close enough" to M_p's
 
-Achieves ~2-3× speedup for large models. Theoretically lossless (provably samples from M_p's distribution). Requires draft and target models to share vocabulary.
+Achieves ~2-3× speedup. Theoretically lossless.
 
 ### 2.2 Mixture of Experts (MoE)
 
 MoE is a conditional computation architecture: only a subset of model parameters are active per input token.
 
-#### Architecture
-
-Replace the dense FFN in each transformer block with a mixture:
-
 ```
 MoE(x) = Σᵢ G(x)ᵢ · Eᵢ(x)
 ```
-
-where:
-- **Eᵢ** = expert FFN i (there are N total experts, typically 8–128)
-- **G(x)** = gating network output (sparse vector)
 
 #### Top-k Gating
 
@@ -587,16 +610,9 @@ where:
 G(x) = Softmax(TopK(x · W_gate, k))
 ```
 
-Only k experts (typically k=2) are activated per token. The other N-k experts receive zero weight and are not computed.
-
-#### Why This Matters
-
-- **Total parameters:** N × (FFN params) — can be huge
-- **Active parameters per token:** k × (FFN params) — constant compute
-- **Mixtral 8×7B:** 46.7B total parameters, ~12.9B active per token → inference cost ≈ 7B dense model
+Only k experts (typically k=2) are activated per token.
 
 #### Expert Load Balancing
-A critical training problem: without regularization, the router collapses (always sends tokens to the same 1–2 experts, "expert collapse").
 
 Auxiliary load balancing loss:
 
@@ -604,289 +620,166 @@ Auxiliary load balancing loss:
 L_aux = α × N × Σᵢ fᵢ · pᵢ
 ```
 
-where fᵢ = fraction of tokens routed to expert i, pᵢ = mean routing probability to expert i. This encourages uniform routing.
-
-#### Expert Specialization
-Empirically, experts develop loose specialization: some handle syntactic patterns, some domain-specific content, some particular languages. This is emergent — not explicitly trained.
-
-#### Distributed Inference Challenge
-In distributed serving, each expert typically lives on a different device. Token routing requires all-to-all communication across devices — a significant networking overhead. Expert parallelism + expert affinity routing are active research areas.
-
 #### DeepSeek-V3's MoE Innovations
-DeepSeek-V3 uses a "fine-grained MoE" with 256 experts (top-8 routing), auxiliary-loss-free load balancing via expert bias terms, and a multi-token prediction auxiliary head. This achieves state-of-the-art at dramatically reduced training cost.
+
+Uses "fine-grained MoE" with 256 experts (top-8 routing), auxiliary-loss-free load balancing via expert bias terms, and a multi-token prediction auxiliary head.
+
+</details>
 
 ---
 
-## MODULE 3 — LLM Finetuning
+<details>
+<summary><strong>MODULE 3 — LLM Finetuning (click to expand)</strong></summary>
 
 ### 3.1 Supervised Finetuning (SFT)
-
-Standard finetuning: continue training on labeled (prompt, completion) pairs with cross-entropy loss on the completion tokens only (prompt tokens are masked).
 
 ```
 L_SFT = -Σₜ log P_θ(yₜ | x, y₁...yₜ₋₁)
 ```
 
 #### Data Quality >> Quantity
-The LIMA paper (2023) demonstrated that 1,000 carefully curated examples can match the instruction-following quality of models trained on 50k+ examples. Distribution matters enormously — diversity of task types, correct formatting, consistent persona.
 
-#### Full Finetuning Challenges
+The LIMA paper (2023) demonstrated that 1,000 carefully curated examples can match the instruction-following quality of models trained on 50k+ examples.
 
-- **Gradient updates to all parameters:** memory = 16–20 bytes/param (weights + gradients + optimizer states for AdamW)
-- **Catastrophic forgetting:** finetuning on narrow domain degrades general capabilities
-- **Overfitting:** small datasets → multiple epochs risk memorization
+### 3.2 LoRA Deep Dive
 
-### 3.2 Parameter-Efficient Finetuning (PEFT) — LoRA
-
-#### Low-Rank Adaptation (LoRA)
-Key insight: the update to pretrained weights during finetuning has low intrinsic rank.
-
-Instead of learning ΔW ∈ ℝ^(d×k) directly, decompose:
+#### Low-Rank Adaptation
 
 ```
-ΔW = B · A,   where B ∈ ℝ^(d×r), A ∈ ℝ^(r×k), r << min(d,k)
-```
-
-During finetuning, W₀ is frozen. Only A and B are trained.
-
-**Initialization:**
-A ~ N(0, σ²), B = 0 → ΔW = 0 at training start (training stability)
-
-**Forward pass:**
-
-```
+ΔW = B · A, where B ∈ ℝ^(d×r), A ∈ ℝ^(r×k), r << min(d,k)
 h = W₀x + (B·A)x · (α/r)
 ```
 
-α is a scaling hyperparameter (often set equal to r, making α/r = 1).
-
-**Parameter reduction:**
-Standard: updating attention matrices (Q, K, V, O). For d=4096, r=16:
-
-- ΔW full: 4096 × 4096 = 16.7M params
-- LoRA: (4096×16) + (16×4096) = 131K params → **128× reduction**
-
-#### Where to Apply LoRA
-Originally: Q and V projections only. Subsequent work (DoRA, LLaMA-Adapter) shows applying to all linear layers (Q, K, V, O, up_proj, down_proj, gate_proj) improves performance.
+**Parameter reduction:** For d=4096, r=16: LoRA = 131K params vs Full = 16.7M → **128× reduction**
 
 #### QLoRA
-Combine 4-bit NF4 quantization of the frozen base model with LoRA adapters in bf16. Enables finetuning a 65B model on a single 48GB GPU.
 
-- **NF4 (NormalFloat4):** a quantization scheme optimal for normally distributed weights
+Enables finetuning a 65B model on a single 48GB GPU:
+- **NF4 (NormalFloat4):** quantization scheme optimal for normally distributed weights
 - **Double quantization:** quantize the quantization constants themselves
-- **Paged optimizers:** use CPU RAM to handle GPU memory spikes during backward pass
+- **Paged optimizers:** use CPU RAM to handle GPU memory spikes
 
 #### LoRA Variants
 
 | Variant | Key Idea |
-|---|---|
+|---------|----------|
 | DoRA | Decomposes weight into magnitude + direction; trains direction via LoRA |
-| LoRA+ | Different learning rates for A and B matrices (B benefits from higher LR) |
+| LoRA+ | Different learning rates for A and B matrices |
 | AdaLoRA | Adaptively allocates rank budget across weight matrices via SVD |
 | LoRA-FA | Freezes A, only trains B → reduces activation memory |
 
-### 3.3 RLHF (Reinforcement Learning from Human Feedback)
+### 3.3 RLHF
 
-RLHF is the pipeline that transforms a pretrained/SFT model into a helpful, harmless assistant. Three stages:
-
-#### Stage 1: Supervised Finetuning
-Already covered. Produces an SFT model capable of following instructions.
-
-#### Stage 2: Reward Model Training
-
-Collect human preference data: for each prompt x, show humans two completions (yᵢ, yⱼ), collect preference label yᵢ ≻ yⱼ.
-
-Train a reward model R_φ (typically same architecture as LLM but with a scalar head) to predict human preferences via Bradley-Terry model:
+#### Stage 1: Reward Model Training
 
 ```
 L_RM = -E[(x,yw,yl)] [log σ(R_φ(x, yw) - R_φ(x, yl))]
 ```
 
-where yw = preferred completion, yl = dispreferred.
-
-#### Stage 3: RL Policy Optimization (PPO)
-
-Maximize reward while maintaining proximity to the reference SFT policy:
+#### Stage 2: PPO
 
 ```
 L_PPO(θ) = E[R_φ(x, y)] - β · KL[π_θ(y|x) || π_ref(y|x)]
 ```
 
-The KL penalty β prevents reward hacking (the policy finding adversarial completions that fool the reward model while degrading quality).
-
-PPO (Proximal Policy Optimization) clips the probability ratio to prevent large policy updates:
-
-```
-L_CLIP = E[min(rₜ Aₜ, clip(rₜ, 1-ε, 1+ε) Aₜ)]
-```
-
-where `rₜ = π_θ(aₜ|sₜ) / π_old(aₜ|sₜ)`, `Aₜ = advantage estimate`.
-
-#### Computational Cost of PPO
-4 models must reside in memory simultaneously:
-
-1. **Policy model π_θ** (trained)
-2. **Reference model π_ref** (frozen SFT)
-3. **Reward model R_φ**
-4. **Value model V_ψ** (critic)
-
-This is extremely memory-intensive. The DeepSpeed-Chat / TRL frameworks implement various parallelism strategies to make this feasible.
-
 #### DPO (Direct Preference Optimization)
-DPO bypasses the RL loop entirely by deriving an analytical relationship between the reward function and the optimal policy:
 
 ```
-L_DPO(θ) = -E[(x,yw,yl)] [log σ(β log(π_θ(yw|x)/π_ref(yw|x)) - β log(π_θ(yl|x)/π_ref(yl|x)))]
+L_DPO(θ) = -E [log σ(β log(π_θ(yw|x)/π_ref(yw|x)) - β log(π_θ(yl|x)/π_ref(yl|x)))]
 ```
-
-This is equivalent to RLHF under the Bradley-Terry preference model but requires only a frozen reference model and the LLM — no reward model, no PPO. Dramatically simpler, now dominant in production.
 
 #### DPO Variants
 
 | Variant | Improvement |
-|---|---|
+|---------|-------------|
 | IPO | Avoids reward overfitting with identity loss |
-| KTO | Uses per-sample binary signals (good/bad) instead of pairs |
+| KTO | Uses per-sample binary signals instead of pairs |
 | SimPO | Removes reference model dependency entirely |
 | ORPO | Combines SFT and preference loss into single stage |
 
+</details>
+
 ---
 
-## MODULE 4 — Evaluation Techniques
+<details>
+<summary><strong>MODULE 4 — Evaluation Techniques (click to expand)</strong></summary>
 
 ### 4.1 Classical Benchmarks
 
-- **MMLU (Massive Multitask Language Understanding):** 57 academic subjects, 4-choice MCQ. Measures breadth of world knowledge.
-- **HellaSwag:** Commonsense NLI — choose most plausible sentence continuation. Tests grounded understanding.
-- **HumanEval / MBPP:** Code generation evaluated by unit test execution. Ground truth via functional correctness.
+- **MMLU:** 57 academic subjects, 4-choice MCQ. Measures breadth of world knowledge.
+- **HellaSwag:** Commonsense NLI — choose most plausible sentence continuation.
+- **HumanEval / MBPP:** Code generation evaluated by unit test execution.
 - **MATH:** Competition mathematics requiring multi-step symbolic reasoning.
-- **GSM8K:** Grade school math word problems. Tests arithmetic reasoning and instruction following.
+- **GSM8K:** Grade school math word problems.
 
 #### Benchmark Contamination
-A critical issue: training data often contains benchmark test sets. Models can "memorize" answers without reasoning capability. Mitigation: n-gram deduplication against benchmarks, held-out evaluation sets, dynamic benchmarks.
+
+Training data often contains benchmark test sets. Models can "memorize" answers without reasoning capability. Mitigation: n-gram deduplication, held-out evaluation sets, dynamic benchmarks.
 
 ### 4.2 LLM-as-a-Judge
 
-Human evaluation is expensive, slow, and inconsistent. LLM-as-a-judge uses a powerful model (typically GPT-4 or Claude) to evaluate outputs along specified dimensions.
-
-#### Single-Answer Grading
-Prompt the judge to rate a response on a 1–10 scale for helpfulness, accuracy, coherence, etc. Provide a detailed rubric.
-
 #### Pairwise Comparison
-Present two responses A and B to the judge, ask which is better. More reliable than absolute scoring; humans and LLM judges both show higher inter-rater agreement on pairwise tasks.
 
-Prompt template:
 ```
 System: You are an expert evaluator...
 User:
-[PROMPT]: {question}
+[PROMPT]:    {question}
 [RESPONSE A]: {response_a}
 [RESPONSE B]: {response_b}
 Which response is better? Explain your reasoning, then output "A" or "B".
 ```
 
-#### MT-Bench
-Designed by Zheng et al. (2023). 80 multi-turn questions across 8 categories (reasoning, math, coding, roleplay, extraction, STEM, humanities, writing). Uses GPT-4 as judge. Scores correlate well with human preferences (Pearson r ≈ 0.93).
-
-#### Chatbot Arena (LMSYS)
-Crowdsourced ELO rating system. Users chat with two anonymous models, select the winner. >1M human votes. The most reliable ranking system for overall user preference — though it biases toward engaging/verbose responses.
-
 #### Failure Modes of LLM-as-a-Judge
 
 | Bias | Description |
-|---|---|
+|------|-------------|
 | Positional bias | Prefers whichever response appears first |
 | Verbosity bias | Longer responses rated higher regardless of quality |
 | Self-enhancement bias | GPT-4 prefers GPT-4 outputs |
 | Sycophancy | Agrees with human's stated preference even when wrong |
 | Calibration failure | Confidently wrong on factual accuracy assessment |
 
-**Mitigations:**
-
-- Swap A/B positions and average results
-- Use chain-of-thought reasoning in judge prompts
-- Provide explicit, rubric-grounded scoring criteria
-- Use ensemble of multiple judge models
-
-#### G-Eval Framework
-Probability-weighted scoring: instead of greedy decoding, compute the expected score as a weighted sum over the model's token probabilities for score digits:
-
-```
-Score = Σᵢ P("i" | prompt) × i
-```
-
-More calibrated than argmax decoding for numeric judgments.
+</details>
 
 ---
 
-## MODULE 5 — Optimization Tricks
+<details>
+<summary><strong>MODULE 5 — Optimization Tricks (click to expand)</strong></summary>
 
 ### 5.1 RoPE (Rotary Position Embedding)
-
-RoPE encodes position by rotating query and key vectors before the attention dot product. The rotation matrix for position m in 2D:
 
 ```
 R(m, θ) = [[cos(mθ), -sin(mθ)],
             [sin(mθ),  cos(mθ)]]
-```
 
-Applied to each pair of dimensions with frequency θᵢ = 10000^(-2i/d):
-
-```
 q_m = R(m) q,   k_n = R(n) k
-```
-
-#### Why This Works
-The dot product qₘᵀ kₙ depends only on the relative position (m - n):
-
-```
 (R(m)q)ᵀ (R(n)k) = qᵀ R(m-n)ᵀ k
 ```
 
-This means attention patterns naturally become a function of relative distance — a theoretically motivated inductive bias.
+#### Context Length Extension
 
-#### Context Length Extension with RoPE
-The base θ = 10000 was designed for shorter contexts. To extend:
-
-**Positional Interpolation (PI):**
-Scale positions down: `m' = m × (original_length / target_length)`. Allows 32k+ context with minimal finetuning.
-
-**YaRN (Yet Another RoPE extensioN):**
-Applies different scaling to different frequency bands of the RoPE dimensions — high-frequency components (local dependencies) are less scaled than low-frequency (long-range). Better perplexity on long sequences.
-
-**LongRoPE:**
-Searches for non-uniform scaling factors per frequency component using evolutionary optimization. Used by Phi-3-mini to extend to 128k context.
+- **Positional Interpolation (PI):** Scale positions down
+- **YaRN:** Different scaling for different frequency bands
+- **LongRoPE:** Non-uniform scaling factors per frequency component
 
 ### 5.2 Quantization
 
-Quantization reduces numerical precision to decrease model size and accelerate inference.
-
-#### Post-Training Quantization (PTQ)
-No retraining required. Calibrate scale factors using a small dataset.
-
-**Round-to-nearest (RTN):** Simply round weights to nearest quantized value. Fast, ~1% accuracy drop at 8-bit, significant degradation at 4-bit.
-
-**GPTQ:** Layer-wise quantization using second-order information (approximate Hessian). Solves the quantization error minimization problem:
+#### GPTQ
 
 ```
 min_Q ||WX - QX||²_F
 ```
 
-Column-wise quantization with lazy batch updates. Achieves near-fp16 quality at 4-bit for large models.
+Column-wise quantization with lazy batch updates. Near-fp16 quality at 4-bit for large models.
 
-**AWQ (Activation-Aware Weight Quantization):**
-Observes that ~1% of weight channels correspond to activation outliers and disproportionately impact quantization error. Protects these channels by scaling before quantization. Outperforms GPTQ on most benchmarks.
+#### AWQ (Activation-Aware Weight Quantization)
 
-#### Quantization-Aware Training (QAT)
-Simulate quantization during forward pass, use straight-through estimator (STE) for gradients through the non-differentiable rounding operation. More accurate but requires full training run.
-
-#### KV Cache Quantization
-KV cache is a major memory bottleneck at long contexts. Quantizing KV cache to INT8 or INT4 (with outlier handling) can halve memory without significant quality loss. Used in production by vLLM, TensorRT-LLM.
+Protects ~1% of weight channels corresponding to activation outliers.
 
 #### Data Types Summary
 
 | Dtype | Bits | Range | Use Case |
-|---|---|---|---|
+|-------|------|-------|----------|
 | FP32 | 32 | ±3.4e38 | Reference, gradient accumulation |
 | BF16 | 16 | ±3.4e38 | Training (same range as FP32) |
 | FP16 | 16 | ±65504 | Training, some inference |
@@ -896,131 +789,68 @@ KV cache is a major memory bottleneck at long contexts. Quantizing KV cache to I
 
 ### 5.3 FlashAttention
 
-Standard attention materializes the full n×n attention matrix in HBM (GPU high-bandwidth memory) — O(n²) memory, slow due to memory bandwidth bottleneck.
+Standard attention materializes the full n×n attention matrix in HBM — O(n²) memory.
 
-FlashAttention (Dao et al., 2022) never materializes the full attention matrix:
-
-1. Tile Q, K, V into blocks that fit in SRAM (on-chip, fast)
+FlashAttention never materializes the full attention matrix:
+1. Tile Q, K, V into blocks that fit in SRAM
 2. Compute attention block-by-block using online softmax normalization
 3. Accumulate output without writing intermediate matrices to HBM
 
-Result: O(n²/B) HBM accesses vs O(n²) for naive — 2-4× speedup, O(n) memory (vs O(n²)).
+Result: O(n²/B) HBM accesses vs O(n²) for naive — 2-4× speedup, O(n) memory.
 
-FlashAttention-2 adds better parallelism over sequence dimension and reduces non-matmul FLOPs. FlashAttention-3 (for H100) leverages asynchronous execution and FP8 precision.
+### 5.4 Paged Attention (vLLM)
 
-### 5.4 Other Approximations
+KV cache is fragmented across GPU memory similarly to virtual memory paging in OS. Eliminates KV cache memory waste. Enables 2-4× higher throughput.
 
-#### Sparse Attention
-Instead of full n×n attention, restrict each token to a structured subset of positions:
-
-- **Local windowed attention:** each token attends only to w neighboring tokens → O(nw) complexity
-- **Global tokens (Longformer):** some tokens attend globally, others locally
-- **Strided/dilated patterns (BigBird):** combines local, global, and random attention
-
-#### Linear Attention
-Approximate softmax attention via kernel trick:
-
-```
-Attention(Q,K,V) ≈ φ(Q) (φ(K)ᵀ V)
-```
-
-The key insight: compute `(φ(K)ᵀ V)` first — O(nd²) instead of O(n²d). But the feature map φ must approximate exp(·) — getting this right is the research challenge.
-
-#### Paged Attention (vLLM)
-KV cache is fragmented across GPU memory similarly to virtual memory paging in OS. Eliminates KV cache memory waste from padding and internal fragmentation. Enables dynamic batching and sharing prefixes across requests. The core innovation of vLLM, enabling 2-4× higher throughput vs naive serving.
+</details>
 
 ---
 
-## MODULE 6 — Reasoning & Scaling
+<details>
+<summary><strong>MODULE 6 — Reasoning & Scaling (click to expand)</strong></summary>
 
-### 6.1 Scaling Laws
-
-#### Chinchilla Scaling Laws (Hoffmann et al., 2022)
-For a given compute budget C (FLOPs), the optimal model size N and training tokens D follow:
+### 6.1 Chinchilla Scaling Laws
 
 ```
 N_opt ∝ C^0.5
 D_opt ∝ C^0.5
+N_opt ≈ D_opt / 20 (tokens per parameter)
 ```
-
-Empirically: `N_opt ≈ D_opt / 20` (tokens per parameter).
-
-This showed that GPT-3 (175B params, ~300B tokens) was significantly undertrained relative to compute-optimal. Chinchilla (70B, 1.4T tokens) matched GPT-3 performance at 4× fewer parameters.
-
-#### Inference-Time Scaling (Test-Time Compute)
-A newer paradigm: allocating more compute at inference rather than training improves quality on hard tasks.
-
-**Methods:**
-
-- **Best-of-N:** sample N completions, select highest reward → reward model required
-- **Self-consistency:** sample multiple chain-of-thought solutions, take majority vote
-- **Process reward models (PRM):** reward each reasoning step, not just final answer → enables beam search over reasoning traces
-- **Monte Carlo Tree Search (MCTS):** systematic exploration of reasoning branches
-
-OpenAI o1 / o3 / DeepSeek-R1 use inference-time scaling via extended chain-of-thought generation with RL training to make the reasoning process itself learnable.
 
 ### 6.2 Chain-of-Thought (CoT)
 
-CoT prompting (Wei et al., 2022) elicits step-by-step reasoning by including worked examples in the prompt. Dramatically improves performance on multi-step reasoning tasks.
+**Zero-shot CoT:** Append "Let's think step by step."
 
-**Zero-shot CoT:** Append "Let's think step by step." to any prompt. Surprisingly effective.
-
-**Emergent property:** CoT only helps models above ~100B parameters (with few-shot prompting). Smaller models produce fluent but incorrect reasoning chains.
-
-#### Self-Consistency (Wang et al., 2023):
-Sample k reasoning paths, take the majority vote on the final answer. Improves accuracy by ~10% on MATH and GSM8K over greedy CoT.
+**Self-Consistency:** Sample k reasoning paths, take majority vote on the final answer. Improves accuracy by ~10% on MATH and GSM8K.
 
 ### 6.3 RL-Based Reasoning
 
-#### RLHF for Reasoning (GRPO / PPO on outcome reward)
-For math/code tasks, outcome verification is automatic (answer correct or test passes). Use binary reward without a reward model:
-
-**GRPO (Group Relative Policy Optimization, DeepSeek-R1):**
-For each prompt, sample G outputs. Normalize rewards within the group:
+#### GRPO (Group Relative Policy Optimization)
 
 ```
 Aᵢ = (rᵢ - mean(r)) / std(r)
 ```
 
-No critic/value model needed — variance reduction via group normalization. Simpler and more stable than PPO for reasoning tasks.
+No critic/value model needed — variance reduction via group normalization.
 
 #### Process Reward Models (PRM)
-Label each intermediate reasoning step as correct/incorrect. Train a model to predict step-level correctness. Use PRM to:
 
-- Rank full solutions via product of step probabilities
-- Guide beam search over reasoning traces at inference time
+PRMs substantially outperform outcome reward models on challenging math problems — the reasoning process matters, not just the answer.
 
-**Key finding (Lightman et al., 2023):** PRMs substantially outperform outcome reward models on challenging math problems — the reasoning process matters, not just the answer.
+</details>
 
 ---
 
-## MODULE 7 — Agentic Workflows
+<details>
+<summary><strong>MODULE 7 — Agentic Workflows (click to expand)</strong></summary>
 
-### 7.1 Retrieval-Augmented Generation (RAG)
-
-RAG grounds LLM outputs in external knowledge, addressing hallucination and knowledge cutoff limitations.
-
-#### Naive RAG Pipeline
+### 7.1 RAG Deep Dive
 
 ```
 Query → Embed → ANN Search → Retrieve top-k chunks → Augment prompt → Generate
 ```
 
-#### Embedding Models
-Documents and queries are embedded into a shared dense vector space. Typical dimensions: 768 (BERT-class) to 4096 (E5-mistral). Training objective: contrastive learning — bring query-document pairs close, push negatives apart.
-
-**ColBERT:** late interaction — embed query and document tokens separately, compute MaxSim scores at retrieval time. More expressive than single-vector embedding, more expensive.
-
-#### Chunking Strategy
-Critical and often underappreciated. Options:
-
-- Fixed-size (e.g., 512 tokens with overlap)
-- Semantic/sentence-level splitting
-- Document-structure-aware (headers, sections)
-- Small-to-big: retrieve small chunks, return parent document sections to the LLM
-
 #### Hybrid Search
-Combine dense (embedding) and sparse (BM25) retrieval, merge results via Reciprocal Rank Fusion (RRF):
 
 ```
 RRF_score(d) = Σ_r 1 / (k + rank_r(d))
@@ -1028,32 +858,17 @@ RRF_score(d) = Σ_r 1 / (k + rank_r(d))
 
 where k=60 is a smoothing constant. Consistently outperforms either retrieval method alone.
 
-#### Reranking
-Apply a cross-encoder (query + document → relevance score) to the top-N dense/BM25 results to select top-k for the LLM. Cross-encoders are slower (can't precompute document embeddings) but far more accurate.
-
 #### Advanced RAG Patterns
 
 | Pattern | Description |
-|---|---|
+|---------|-------------|
 | HyDE | Generate a hypothetical answer, embed it, retrieve similar documents |
 | Query rewriting | LLM reformulates ambiguous queries before retrieval |
-| Multi-hop retrieval | Iteratively retrieve and reason; use intermediate answers to form new queries |
-| Self-RAG | Model decides when to retrieve (via special tokens) and reflects on retrieved results |
-| RAPTOR | Hierarchical document clustering + summarization; retrieval at multiple abstraction levels |
+| Multi-hop retrieval | Iteratively retrieve and reason |
+| Self-RAG | Model decides when to retrieve and reflects on retrieved results |
+| RAPTOR | Hierarchical document clustering + summarization |
 
-#### RAG Failure Modes
-
-- **Retrieval failure:** correct documents not retrieved (recall problem)
-- **Context utilization failure:** documents retrieved but model ignores them (attention dilution)
-- **Conflicting contexts:** retrieved chunks contradict each other or the model's parametric knowledge
-- **Lost in the middle:** LLMs attend poorly to information in the middle of long contexts
-
-### 7.2 Tool Calling (Function Calling)
-
-Tool calling allows LLMs to invoke external APIs, execute code, query databases, and interact with environments — extending capabilities beyond what language modeling can represent.
-
-#### Mechanism
-The model is trained/prompted to output structured JSON describing a function call instead of a natural language answer:
+### 7.2 Tool Calling
 
 ```json
 {
@@ -1065,24 +880,7 @@ The model is trained/prompted to output structured JSON describing a function ca
 }
 ```
 
-The host application executes the function, returns results, and continues the conversation with the tool result as context.
-
-#### Training for Tool Use
-Models are finetuned on datasets of tool-augmented conversations. The chat template includes special tokens delineating tool definitions, tool calls, and tool results. OpenAI function calling, Anthropic tool use, and LLaMA-3's tool calling format all follow variations of this pattern.
-
-#### Tool Schemas
-Tools are described in JSON Schema format in the system prompt. The model must learn to respect type constraints, required fields, and valid enum values — essentially learning to produce schema-valid JSON on demand.
-
-### 7.3 Agentic Architectures
-
-An agent is a system where an LLM acts iteratively, with access to tools and memory, to complete a goal.
-
-#### ReAct (Reason + Act)
-Alternates between:
-
-- **Thought:** explicit reasoning about current state and next action
-- **Action:** tool call with parameters
-- **Observation:** tool result
+### 7.3 ReAct Agent Pattern
 
 ```
 Thought: I need to find the population of Tokyo.
@@ -1092,43 +890,32 @@ Thought: Now I can answer.
 Answer: Tokyo's city proper population is approximately 14 million.
 ```
 
-#### Agent Memory Systems
+### 7.4 Agent Memory Systems
 
 | Memory Type | Implementation | Use Case |
-|---|---|---|
+|-------------|---------------|----------|
 | In-context | Messages in context window | Short-term working memory |
 | External (episodic) | Vector store with retrieved memories | Long-term user/session state |
 | External (semantic) | Knowledge graph or structured DB | Factual knowledge retrieval |
 | Procedural | Finetuning / system prompt | Behavioral tendencies |
 
-#### Multi-Agent Systems
-Multiple LLM agents interact to solve complex tasks:
-
-- **Orchestrator-subagent:** one agent plans and delegates subtasks to specialized agents
-- **Debate:** multiple agents argue positions, resolve disagreements
-- **Society of Mind:** large pool of agents, each with narrow capability
-
-Frameworks: LangGraph, AutoGen, CrewAI.
-
-#### Key Challenges in Agentic Systems
+### 7.5 Key Challenges
 
 | Challenge | Description |
-|---|---|
+|-----------|-------------|
 | Error propagation | Early mistakes cascade through multi-step plans |
 | Context management | Long agent traces exhaust context windows |
 | Tool reliability | External APIs fail; model must handle gracefully |
-| Reward hacking | Agent finds shortcuts that satisfy literal goal but not intent |
 | Safety | Agents with real-world effects require careful permission scoping |
 
-#### Structured Output Enforcement
-Constrained decoding (via grammar-guided sampling) ensures tool calls are always syntactically valid JSON. Outlines and llama.cpp implement this via pushdown automata over the token generation process — only tokens that extend a valid partial parse are allowed.
+</details>
 
 ---
 
 ## Quick Reference: Architecture Choices by Model Family
 
 | Model | Arch | Norm | PE | Attention | FFN | MoE |
-|---|---|---|---|---|---|---|
+|-------|------|------|----|-----------|-----|-----|
 | GPT-2 | Decoder | LayerNorm | Learned abs | MHA | GeLU | No |
 | LLaMA-3 | Decoder | RMSNorm | RoPE | GQA | SwiGLU | No |
 | Mistral-7B | Decoder | RMSNorm | RoPE | GQA + sliding window | SwiGLU | No |
@@ -1138,4 +925,29 @@ Constrained decoding (via grammar-guided sampling) ensures tool calls are always
 
 ---
 
-*Document generated for advanced ML engineering study. All formulations reflect current literature as of 2024–2025.*
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="center">
+  <strong>If you find this resource helpful, please consider giving it a ⭐!</strong>
+</p>
+
+---
+
+> This strategic analysis was curated and prompt-engineered by  
+> Hande Gabrali-Knobloch  
+> Powered by NotebookLM — based on the provided texts.
+
+---
+
+<!-- ===== FOOTER BANNER (Capsule Render) ===== -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,100:4a6cf7&height=120&section=footer" alt="Footer" width="100%" />
+</p>
