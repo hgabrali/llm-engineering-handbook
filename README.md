@@ -36,7 +36,7 @@ Raw text must be converted into discrete integer IDs before a neural network can
 - **Special tokens:** \`[BOS]\`, \`[EOS]\`, \`[PAD]\`, \`[UNK]\`, \`[MASK]\` — each carries model-specific semantics.
 - **Pre-tokenization:** Whitespace splitting, regex patterns applied before BPE.
 
-\`\`\`python
+
 
 # Example: tiktoken (OpenAI)
 import tiktoken
