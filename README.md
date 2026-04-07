@@ -333,6 +333,16 @@ Input (injection detection), output (hallucination/toxicity), tool-use (permissi
 
 ---
 
+- Lecture 1: https://zurl.co/F0QR5
+- Lecture 2: https://zurl.co/hG5lp
+- Lecture 3: https://zurl.co/PnKrW
+- Lecture 4: https://zurl.co/XCZoE
+- Lecture 5: https://zurl.co/GWlYI
+- Lecture 6: https://zurl.co/zGqqQ
+- Lecture 7: https://zurl.co/T06NM
+- Lecture 8: https://zurl.co/Un42q
+- Lecture 9: https://zurl.co/rR3YL
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
