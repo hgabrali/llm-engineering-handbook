@@ -1,6 +1,6 @@
 <!-- ===== SECTION 1: BANNER (Capsule Render) ===== -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api? type=waving&color=0:1a1b27,100:4a6cf7&height=220&section=header&text=LLM%20Engineering%20Handbook&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=From%20Transformer%20Internals%20to%20Agentic%20Workflows&descSize=18&descAlignY=55&animation=fadeIn" alt="Banner" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:434343&height=220&section=header&text=LLM%20Engineering%20Handbook&fontSize=42&fontColor=ffffff&fontAlignY=35&desc=From%20Transformer%20Internals%20to%20Agentic%20Workflows&descSize=18&descAlignY=55&animation=fadeIn" alt="Banner" width="100%" />
 </p>
 
 <!-- ===== SECTION 2: BADGES (Shields.io) ===== -->
@@ -382,7 +382,7 @@ Input (injection detection), output (hallucination/toxicity), tool-use (permissi
 
 <!-- ===== SECTION SEPARATOR ===== -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:1a1b27,100:4a6cf7&height=2&section=header" alt="separator" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:000000,100:434343&height=2&section=header" alt="separator" width="100%" />
 </p>
 
 # LLM Deep Dive: Expert Technical Reference
@@ -912,5 +912,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <!-- ===== FOOTER BANNER (Capsule Render) ===== -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,100:4a6cf7&height=120&section=footer" alt="Footer" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:434343&height=120&section=footer" alt="Footer" width="100%" />
 </p>
