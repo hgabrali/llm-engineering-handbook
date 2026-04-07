@@ -37,6 +37,7 @@ Raw text must be converted into discrete integer IDs before a neural network can
 - **Pre-tokenization:** Whitespace splitting, regex patterns applied before BPE.
 
 \`\`\`python
+
 # Example: tiktoken (OpenAI)
 import tiktoken
 enc = tiktoken.encoding_for_model("gpt-4")
